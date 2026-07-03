@@ -122,8 +122,16 @@ export class SmartSyncEngine extends EventTarget {
     this.dispatchEvent(new CustomEvent('merged', { detail: { localList } }));
     return localList;
   }
+
+  /**
+   * Callback binder helper
+   */
+  on(event, callback) {
+    this.addEventListener(event, (e) => callback(e.detail));
+  }
 }
 
 if (typeof window !== 'undefined') {
   window.SmartSyncEngine = SmartSyncEngine;
 }
+
